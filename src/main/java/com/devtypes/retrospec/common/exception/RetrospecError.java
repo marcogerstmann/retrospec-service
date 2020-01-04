@@ -7,11 +7,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
-public class ApiError {
+public class RetrospecError {
     private String field;
     private String message;
 
-    public ApiError(String message) {
+    public RetrospecError(String message) {
         this.message = message;
     }
 }

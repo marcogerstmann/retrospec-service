@@ -1,6 +1,6 @@
 package com.devtypes.retrospec.common.rest;
 
-import com.devtypes.retrospec.common.exception.ApiError;
+import com.devtypes.retrospec.common.exception.RetrospecError;
 import lombok.Getter;
 
 import javax.annotation.Nullable;
@@ -13,7 +13,7 @@ import java.util.List;
 public class Envelope<T> {
 
     private Object payload;
-    private List<ApiError> errors;
+    private List<RetrospecError> errors;
 
     public Envelope(T payload) {
         this.payload = payload;
@@ -23,7 +23,7 @@ public class Envelope<T> {
         this.payload = payload;
     }
 
-    public Envelope(@Nullable Object payload, @Nullable List<ApiError> errors) {
+    public Envelope(@Nullable Object payload, @Nullable List<RetrospecError> errors) {
         this.payload = payload;
         this.errors = errors;
     }
@@ -37,12 +37,12 @@ public class Envelope<T> {
         return new Envelope<>(payload);
     }
 
-    public static Envelope error(List<ApiError> errors) {
+    public static Envelope error(List<RetrospecError> errors) {
         return new Envelope<>(null, errors);
     }
 
     public static Envelope error(String errorMessage) {
-        return Envelope.error(Collections.singletonList(new ApiError(errorMessage)));
+        return Envelope.error(Collections.singletonList(new RetrospecError(errorMessage)));
     }
 
 }
