@@ -30,12 +30,12 @@ public abstract class BaseEntityModel {
     private Timestamp createdAt;
 
     @CreatedBy
-    private Long createdBy;
+    private String createdBy;
 
     @LastModifiedDate
     private Timestamp changedAt;
 
     @LastModifiedBy
-    private Long changedBy;
+    private String changedBy;
 
 }
