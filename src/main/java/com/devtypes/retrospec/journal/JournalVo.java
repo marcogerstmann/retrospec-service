@@ -1,20 +1,20 @@
 package com.devtypes.retrospec.journal;
 
+import com.devtypes.retrospec.common.base.BaseVo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
-import java.util.UUID;
 
 @ParametersAreNonnullByDefault
 @NoArgsConstructor
 @AllArgsConstructor
-public class JournalVo {
-    @Id
-    private UUID id;
+@Setter
+public class JournalVo extends BaseVo {
 
     @NotBlank
     private String name;
+
 }

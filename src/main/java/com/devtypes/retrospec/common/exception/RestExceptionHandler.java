@@ -4,7 +4,6 @@ import com.devtypes.retrospec.common.rest.Envelope;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -37,10 +36,11 @@ public class RestExceptionHandler {
         return buildValidationErrorResponse(errors);
     }
 
-    @ExceptionHandler(AccessDeniedException.class)
-    protected ResponseEntity<Envelope> handleAccessDeniedException(AccessDeniedException exception) {
-        return buildErrorResponse(exception, HttpStatus.FORBIDDEN);
-    }
+    // TODO: Implement again when using Spring Boot Security
+//    @ExceptionHandler(AccessDeniedException.class)
+//    protected ResponseEntity<Envelope> handleAccessDeniedException(AccessDeniedException exception) {
+//        return buildErrorResponse(exception, HttpStatus.FORBIDDEN);
+//    }
 
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Envelope> handleGenericException(Exception exception) {

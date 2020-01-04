@@ -1,5 +1,5 @@
 package com.devtypes.retrospec.common.enums;
 
-public enum Entity {
+public enum RetrospecEntity {
     UNSPECIFIED
 }
