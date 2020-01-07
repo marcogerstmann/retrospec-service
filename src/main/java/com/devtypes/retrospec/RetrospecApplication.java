@@ -15,10 +15,10 @@ import java.util.List;
 @SpringBootApplication(scanBasePackages = "com.devtypes.retrospec")
 @Configuration
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
-public class Application {
+public class RetrospecApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(RetrospecApplication.class, args);
     }
 
     @Bean
