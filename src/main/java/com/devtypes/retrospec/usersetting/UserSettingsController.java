@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Nonnull;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -18,12 +17,6 @@ public class UserSettingsController {
 
     public UserSettingsController(IUserSettingService userSettingService) {
         this.userSettingService = userSettingService;
-    }
-
-    @Nonnull
-    @GetMapping
-    protected ResponseEntity<List<UserSettingVo>> index() {
-        return ResponseEntity.ok(userSettingService.findAll());
     }
 
     @Nonnull

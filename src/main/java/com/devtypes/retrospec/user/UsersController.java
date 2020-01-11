@@ -2,6 +2,8 @@ package com.devtypes.retrospec.user;
 
 import com.devtypes.retrospec.common.enums.RetrospecEntity;
 import com.devtypes.retrospec.common.exception.RetrospecNotFoundException;
+import com.devtypes.retrospec.usersetting.IUserSettingService;
+import com.devtypes.retrospec.usersetting.UserSettingVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +17,11 @@ import java.util.UUID;
 public class UsersController {
 
     private final IUserService userService;
+    private final IUserSettingService userSettingService;
 
-    public UsersController(IUserService userService) {
+    public UsersController(IUserService userService, IUserSettingService userSettingService) {
         this.userService = userService;
+        this.userSettingService = userSettingService;
     }
 
     @Nonnull
@@ -32,6 +36,14 @@ public class UsersController {
         return userService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new RetrospecNotFoundException(RetrospecEntity.USER, id));
+    }
+
+    @Nonnull
+    @GetMapping("{id}/settings")
+    protected ResponseEntity<UserSettingVo> getSettings(@PathVariable UUID id) {
+        return userSettingService.findByUserId(id)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new RetrospecNotFoundException(RetrospecEntity.USER_SETTING, id));
     }
 
     @Nonnull
