@@ -34,7 +34,7 @@ create table daily_journal (
     user_id uuid references user_account(id) not null,
     log_date date not null default current_date,
     mood_points smallint,
-    habits json,
+    habits jsonb,
     created_at timestamptz,
     created_by varchar,
     changed_at timestamptz,
