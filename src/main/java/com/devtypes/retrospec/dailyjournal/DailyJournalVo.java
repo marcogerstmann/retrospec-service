@@ -1,6 +1,7 @@
 package com.devtypes.retrospec.dailyjournal;
 
 import com.devtypes.retrospec.common.base.BaseVo;
+import com.devtypes.retrospec.dailyjournal.dailybullet.DailyBulletVo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -29,5 +31,7 @@ public class DailyJournalVo extends BaseVo {
     private Integer moodPoints;
 
     private String habits;
+
+    private List<DailyBulletVo> bullets;
 
 }
