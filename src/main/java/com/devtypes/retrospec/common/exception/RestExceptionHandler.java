@@ -1,7 +1,7 @@
 package com.devtypes.retrospec.common.exception;
 
-import com.devtypes.retrospec.common.rest.Envelope;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,21 +16,21 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler {
 
     @ExceptionHandler(RetrospecBusinessException.class)
-    protected ResponseEntity<Envelope> handleBusinessException(RetrospecBusinessException exception) {
+    protected ResponseEntity<String> handleBusinessException(RetrospecBusinessException exception) {
         log.error("Business error: " + exception.getMessage());
         return buildErrorResponse(exception, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(RetrospecNotFoundException.class)
-    protected ResponseEntity<Envelope> handleNotFoundException(RetrospecNotFoundException exception) {
+    protected ResponseEntity<String> handleNotFoundException(RetrospecNotFoundException exception) {
         log.error("Not found error: " + exception.getMessage());
         return buildErrorResponse(exception, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected ResponseEntity<Envelope> handleValidationException(MethodArgumentNotValidException exception) {
-        List<RetrospecError> errors = exception.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> new RetrospecError(fieldError.getField(), fieldError.getDefaultMessage()))
+    protected ResponseEntity<List<String>> handleValidationException(MethodArgumentNotValidException exception) {
+        List<String> errors = exception.getBindingResult().getFieldErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
         log.error("Validation error: {}", errors);
         return buildValidationErrorResponse(errors);
@@ -43,21 +43,21 @@ public class RestExceptionHandler {
 //    }
 
     @ExceptionHandler(Exception.class)
-    protected ResponseEntity<Envelope> handleGenericException(Exception exception) {
+    protected ResponseEntity<String> handleGenericException(Exception exception) {
         log.error("Runtime exception: ", exception);
         return buildErrorResponse(exception, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    private ResponseEntity<Envelope> buildErrorResponse(Exception exception, HttpStatus httpStatus) {
+    private ResponseEntity<String> buildErrorResponse(Exception exception, HttpStatus httpStatus) {
         return ResponseEntity
                 .status(httpStatus)
-                .body(Envelope.error(exception.getMessage()));
+                .body(exception.getMessage());
     }
 
-    private ResponseEntity<Envelope> buildValidationErrorResponse(List<RetrospecError> errors) {
+    private ResponseEntity<List<String>> buildValidationErrorResponse(List<String> errors) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
-                .body(Envelope.error(errors));
+                .body(errors);
     }
 
 }
