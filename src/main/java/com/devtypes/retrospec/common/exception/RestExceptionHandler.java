@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler {
 
     @ExceptionHandler(RetrospecBusinessException.class)
-    protected ResponseEntity<Envelope> handleXvelaBusinessException(RetrospecBusinessException exception) {
+    protected ResponseEntity<Envelope> handleBusinessException(RetrospecBusinessException exception) {
         log.error("Business error: " + exception.getMessage());
         return buildErrorResponse(exception, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(RetrospecNotFoundException.class)
-    protected ResponseEntity<Envelope> handleXvelaNotFoundException(RetrospecNotFoundException exception) {
+    protected ResponseEntity<Envelope> handleNotFoundException(RetrospecNotFoundException exception) {
         log.error("Not found error: " + exception.getMessage());
         return buildErrorResponse(exception, HttpStatus.NOT_FOUND);
     }
