@@ -32,3 +32,8 @@ management:
       base-path: /api/mgmt
       exposure:
         include: flyway, health, info, metrics
+
+# API documentation / Swagger
+springdoc:
+  api-docs:
+    path: /api-docs
