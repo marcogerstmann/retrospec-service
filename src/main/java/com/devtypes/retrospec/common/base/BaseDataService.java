@@ -2,6 +2,7 @@ package com.devtypes.retrospec.common.base;
 
 import com.devtypes.retrospec.common.enums.RetrospecEntity;
 import com.devtypes.retrospec.common.exception.RetrospecNotFoundException;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nonnull;
@@ -15,11 +16,11 @@ import java.util.UUID;
 @Transactional
 public abstract class BaseDataService<T, V extends BaseVo> implements IDataService<V> {
 
-    private final BaseRepository<T, UUID> repository;
+    private final JpaRepository<T, UUID> repository;
     private final AbstractConverter<T, V> converter;
 
-    public BaseDataService(BaseRepository<T, UUID> baseRepository, AbstractConverter<T, V> converter) {
-        this.repository = baseRepository;
+    public BaseDataService(JpaRepository<T, UUID> repository, AbstractConverter<T, V> converter) {
+        this.repository = repository;
         this.converter = converter;
     }
 

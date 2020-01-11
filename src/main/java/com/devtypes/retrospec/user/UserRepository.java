@@ -1,8 +1,8 @@
 package com.devtypes.retrospec.user;
 
-import com.devtypes.retrospec.common.base.BaseRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface UserRepository extends BaseRepository<User, UUID> {
+public interface UserRepository extends JpaRepository<User, UUID> {
 }
