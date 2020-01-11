@@ -38,7 +38,8 @@ create table daily_journal (
     created_at timestamptz,
     created_by varchar,
     changed_at timestamptz,
-    changed_by varchar
+    changed_by varchar,
+    unique(user_id, log_date)
 );
 
 create table daily_bullet (

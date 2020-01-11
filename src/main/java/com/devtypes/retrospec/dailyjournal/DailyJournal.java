@@ -1,13 +1,9 @@
 package com.devtypes.retrospec.dailyjournal;
 
 import com.devtypes.retrospec.common.base.BaseEntity;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -18,10 +14,6 @@ import java.util.UUID;
 @Data
 @Entity
 @ParametersAreNonnullByDefault
-@TypeDef(
-        name = "jsonb",
-        typeClass = JsonBinaryType.class
-)
 public class DailyJournal extends BaseEntity {
 
     @NotNull
@@ -34,8 +26,6 @@ public class DailyJournal extends BaseEntity {
     @Max(10)
     private Integer moodPoints;
 
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
     private String habits;
 
 }
