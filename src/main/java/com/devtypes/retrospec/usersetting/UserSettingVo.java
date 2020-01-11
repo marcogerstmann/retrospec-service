@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 @Data
 @ParametersAreNonnullByDefault
@@ -14,11 +15,9 @@ import javax.validation.constraints.NotBlank;
 @Setter
 public class UserSettingVo extends BaseVo {
 
-    @NotBlank
-    private String email;
+    @NotNull
+    private UUID userId;
 
-    private String firstName;
-
-    private String lastName;
+    private String language;
 
 }

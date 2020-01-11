@@ -1,12 +1,12 @@
 package com.devtypes.retrospec.usersetting;
 
 import com.devtypes.retrospec.common.base.BaseEntity;
-import com.devtypes.retrospec.user.User;
 import lombok.Data;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Data
@@ -14,7 +14,8 @@ import java.util.UUID;
 @ParametersAreNonnullByDefault
 public class UserSetting extends BaseEntity {
 
-    @Column(name = "user_id", updatable = false)
+    @Column(updatable = false)
+    @NotNull
     private UUID userId;
 
     private String language;
