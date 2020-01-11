@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
@@ -16,18 +17,21 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler {
 
     @ExceptionHandler(RetrospecBusinessException.class)
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY, reason = "Business logic error")
     protected ResponseEntity<String> handleBusinessException(RetrospecBusinessException exception) {
         log.error("Business error: " + exception.getMessage());
         return buildErrorResponse(exception, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(RetrospecNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ResponseEntity<String> handleNotFoundException(RetrospecNotFoundException exception) {
         log.error("Not found error: " + exception.getMessage());
         return buildErrorResponse(exception, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<List<String>> handleValidationException(MethodArgumentNotValidException exception) {
         List<String> errors = exception.getBindingResult().getFieldErrors().stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
@@ -43,6 +47,7 @@ public class RestExceptionHandler {
 //    }
 
     @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ResponseEntity<String> handleGenericException(Exception exception) {
         log.error("Runtime exception: ", exception);
         return buildErrorResponse(exception, HttpStatus.INTERNAL_SERVER_ERROR);
