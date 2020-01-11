@@ -1,4 +1,4 @@
-package com.devtypes.retrospec.journal;
+package com.devtypes.retrospec.user;
 
 import com.devtypes.retrospec.common.base.BaseVo;
 import lombok.Data;
@@ -12,9 +12,13 @@ import javax.validation.constraints.NotBlank;
 @ParametersAreNonnullByDefault
 @NoArgsConstructor
 @Setter
-public class JournalVo extends BaseVo {
+public class UserVo extends BaseVo {
 
     @NotBlank
-    private String name;
+    private String email;
+
+    private String firstName;
+
+    private String lastName;
 
 }
