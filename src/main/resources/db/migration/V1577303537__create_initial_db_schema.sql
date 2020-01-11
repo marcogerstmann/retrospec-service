@@ -1,6 +1,6 @@
 create table user_account (
     id uuid primary key,
-    email varchar not null,
+    email varchar unique not null,
     first_name varchar,
     last_name varchar,
     created_at timestamptz,

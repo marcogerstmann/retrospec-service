@@ -1,6 +1,7 @@
 package com.devtypes.retrospec.usersetting;
 
 import com.devtypes.retrospec.common.base.BaseVo;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

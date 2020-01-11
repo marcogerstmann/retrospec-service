@@ -4,7 +4,6 @@ import com.devtypes.retrospec.common.base.BaseEntity;
 import lombok.Data;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
@@ -14,7 +13,6 @@ import java.util.UUID;
 @ParametersAreNonnullByDefault
 public class UserSetting extends BaseEntity {
 
-    @Column(updatable = false)
     @NotNull
     private UUID userId;
 
