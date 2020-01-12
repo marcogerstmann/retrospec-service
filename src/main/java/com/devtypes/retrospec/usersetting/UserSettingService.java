@@ -24,6 +24,8 @@ public class UserSettingService extends BaseDataService<UserSetting, UserSetting
 
     @Override
     public Optional<UserSettingVo> findByUserId(UUID userId) {
+        System.out.println(userSettingRepository.findByUserId(userId));
+        System.out.println(userSettingRepository.findByUserId(userId).map(userSettingConverter::convertEntityToVo));
         return userSettingRepository.findByUserId(userId).map(userSettingConverter::convertEntityToVo);
     }
 }

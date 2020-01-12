@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: ${RETROSPEC_DB_URL:jdbc:postgresql://localhost:5432/retrospec_test}
+    username: ${RETROSPEC_DB_USERNAME:mnr}
+    password: ${RETROSPEC_DB_PASSWORD:mnrpass}
+  jpa:
+    show-sql: true
