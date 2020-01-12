@@ -28,7 +28,7 @@ class RestExceptionHandlerSpec extends Specification {
         ResponseEntity responseEntity = restExceptionHandler.handleNotFoundException(exception)
 
         then: 'status code is 400 (NOT FOUND)'
-        responseEntity.getStatusCode() == HttpStatus.NOT_FOUND
+        responseEntity.getStatusCode() == HttpStatus.BAD_GATEWAY
     }
 
     // TODO: Implement again when using Spring Boot Security
