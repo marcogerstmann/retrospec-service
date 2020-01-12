@@ -1,7 +1,0 @@
-<dataset>
-
-    <berth_position id="abd9bdee-a739-452a-8ebf-8a7ef1c3e7fc" terminal_id="4fa6b12d-6e1e-4f68-8104-04ee91ced995"
-                    bollard_aft_id="6886ba02-bae5-43f5-be38-12f00c7da8b7"
-                    bollard_fore_id="7886ba02-bae5-43f5-be38-12f00c7da8b7" bollard_aft_offset="1.0"
-                    bollard_fore_offset="2.0"/>
-</dataset>
