@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import spock.lang.Specification
 
-import javax.xml.bind.JAXBException
-
 class RestExceptionHandlerSpec extends Specification {
 
     private RestExceptionHandler restExceptionHandler = new RestExceptionHandler()
@@ -45,11 +43,4 @@ class RestExceptionHandlerSpec extends Specification {
 //        responseEntity.getStatusCode() == HttpStatus.FORBIDDEN
 //    }
 
-    def 'handle runtime exception'() {
-        when: 'handler is called'
-        ResponseEntity responseEntity = restExceptionHandler.handleGenericException(new JAXBException("Unable to parse"))
-
-        then: 'status should be internal server error, errors are created'
-        responseEntity.statusCode == HttpStatus.INTERNAL_SERVER_ERROR
-    }
 }
