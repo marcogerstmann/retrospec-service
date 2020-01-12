@@ -31,7 +31,7 @@ public class DailyJournalsController {
     protected ResponseEntity<DailyJournalVo> get(@PathVariable UUID id) {
         return habitService.findById(id)
                 .map(ResponseEntity::ok)
-                .orElseThrow(() -> new RetrospecNotFoundException(RetrospecEntity.HABIT, id));
+                .orElseThrow(() -> new RetrospecNotFoundException(RetrospecEntity.DAILY_JOURNAL, id));
     }
 
     @Nonnull

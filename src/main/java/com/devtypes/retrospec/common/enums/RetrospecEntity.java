@@ -4,5 +4,6 @@ public enum RetrospecEntity {
     UNSPECIFIED,
     USER,
     USER_SETTING,
-    HABIT
+    HABIT,
+    DAILY_JOURNAL
 }
