@@ -2,6 +2,7 @@ package com.devtypes.retrospec.dailyjournal;
 
 import com.devtypes.retrospec.common.base.BaseVo;
 import com.devtypes.retrospec.dailyjournal.dailybullet.DailyBulletVo;
+import com.devtypes.retrospec.dailyjournal.dailyhabit.DailyHabitVo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,7 +31,7 @@ public class DailyJournalVo extends BaseVo {
     @Max(10)
     private Integer moodPoints;
 
-    private String habits;
+    private List<DailyHabitVo> habits;
 
     private List<DailyBulletVo> bullets;
 
