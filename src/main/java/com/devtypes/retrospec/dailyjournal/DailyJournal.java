@@ -5,7 +5,9 @@ import com.devtypes.retrospec.dailyjournal.dailybullet.DailyBullet;
 import lombok.Data;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
