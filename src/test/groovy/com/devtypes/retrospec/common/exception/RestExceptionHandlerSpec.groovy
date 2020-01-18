@@ -9,7 +9,7 @@ class RestExceptionHandlerSpec extends Specification {
 
     private RestExceptionHandler restExceptionHandler = new RestExceptionHandler()
 
-    def 'handle business logic exception'() {
+    def 'handle business exception'() {
         given: 'runtime exception'
         RuntimeException exception = new RetrospecBusinessException("A business logic error message")
 
@@ -27,7 +27,7 @@ class RestExceptionHandlerSpec extends Specification {
         when: 'handler is called'
         ResponseEntity responseEntity = restExceptionHandler.handleNotFoundException(exception)
 
-        then: 'status code is 400 (NOT FOUND)'
+        then: 'status code is 404 (NOT FOUND)'
         responseEntity.getStatusCode() == HttpStatus.NOT_FOUND
     }
 
