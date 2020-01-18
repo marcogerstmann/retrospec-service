@@ -11,10 +11,10 @@ class RestExceptionHandlerSpec extends Specification {
 
     def 'handle business exception'() {
         given: 'runtime exception'
-        RuntimeException exception = new RetrospecBusinessException("A business logic error message")
+        def exception = new RetrospecBusinessException("A business logic error message")
 
         when: 'handler is called'
-        ResponseEntity responseEntity = restExceptionHandler.handleBusinessException(exception)
+        def responseEntity = restExceptionHandler.handleBusinessException(exception)
 
         then: 'status code is 422 (UNPROCESSABLE ENTITY)'
         responseEntity.getStatusCode() == HttpStatus.UNPROCESSABLE_ENTITY
@@ -22,10 +22,10 @@ class RestExceptionHandlerSpec extends Specification {
 
     def 'handle not found exception'() {
         given: 'runtime exception'
-        RuntimeException exception = new RetrospecNotFoundException(RetrospecEntity.DAILY_JOURNAL, UUID.randomUUID())
+        def exception = new RetrospecNotFoundException(RetrospecEntity.DAILY_JOURNAL, UUID.randomUUID())
 
         when: 'handler is called'
-        ResponseEntity responseEntity = restExceptionHandler.handleNotFoundException(exception)
+        def responseEntity = restExceptionHandler.handleNotFoundException(exception)
 
         then: 'status code is 404 (NOT FOUND)'
         responseEntity.getStatusCode() == HttpStatus.NOT_FOUND
@@ -34,10 +34,10 @@ class RestExceptionHandlerSpec extends Specification {
     // TODO: Implement again when using Spring Boot Security
 //    def 'handle access denied exception'() {
 //        given: 'runtime exception'
-//        RuntimeException exception = new AccessDeniedException("Access denied")
+//        def exception = new AccessDeniedException("Access denied")
 //
 //        when: 'handler is called'
-//        ResponseEntity responseEntity = restExceptionHandler.handleAccessDeniedException(exception)
+//        def responseEntity = restExceptionHandler.handleAccessDeniedException(exception)
 //
 //        then: 'status code is 403 (FORBIDDEN)'
 //        responseEntity.getStatusCode() == HttpStatus.FORBIDDEN

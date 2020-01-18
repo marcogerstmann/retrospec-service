@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'groovy'
+    id 'jacoco'
 }
 
 group = 'com.devtypes'
@@ -61,4 +62,19 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
+
+check {
+    dependsOn jacocoTestCoverageVerification
 }
