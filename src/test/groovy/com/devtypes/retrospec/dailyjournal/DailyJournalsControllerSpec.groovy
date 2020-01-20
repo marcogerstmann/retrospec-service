@@ -1,31 +1,31 @@
-package com.devtypes.retrospec.habit
+package com.devtypes.retrospec.dailyjournal
 
 import com.devtypes.retrospec.common.enums.RetrospecEntity
 import com.devtypes.retrospec.common.exception.RetrospecNotFoundException
 import spock.lang.Specification
 
-class HabitsControllerSpec extends Specification {
-    IHabitService habitService = Mock()
-    HabitsController controller
+class DailyJournalsControllerSpec extends Specification {
+    IDailyJournalService dailyJournalService = Mock()
+    DailyJournalsController controller
 
     def setup() {
-        controller = new HabitsController(habitService)
+        controller = new DailyJournalsController(dailyJournalService)
     }
 
     def "GET endpoint call"() {
-        given: "a list of habits"
-        habitService.findAll() >> [new HabitVo(), new HabitVo()]
+        given: "a list of daily journals"
+        dailyJournalService.findAll() >> [new DailyJournalVo(), new DailyJournalVo()]
 
         when: "GET endpoint is called"
         def endpointResult = controller.index()
 
-        then: "the list of habits is returned"
+        then: "the list of daily journals is returned"
         endpointResult.body.size() == 2
     }
 
     def "GET /{id} endpoint call"() {
         given: "an empty return value from the service"
-        habitService.findById(_ as UUID) >> Optional.empty()
+        dailyJournalService.findById(_ as UUID) >> Optional.empty()
 
         when: "GET /{id} endpoint is called"
         controller.get(UUID.randomUUID())
@@ -33,24 +33,24 @@ class HabitsControllerSpec extends Specification {
         then: "not found exception is thrown"
         def thrown = thrown(RetrospecNotFoundException)
 
-        and: "entity type of exception is HABIT"
-        thrown.notFoundEntity == RetrospecEntity.HABIT
+        and: "entity type of exception is DAILY_JOURNAL"
+        thrown.notFoundEntity == RetrospecEntity.DAILY_JOURNAL
     }
 
     def "POST endpoint call"() {
         when: "POST endpoint is called"
-        controller.post(new HabitVo())
+        controller.post(new DailyJournalVo())
 
         then: "service is called for creation"
-        1 * habitService.create(_)
+        1 * dailyJournalService.create(_)
     }
 
     def "PUT endpoint call"() {
         when: "PUT endpoint is called"
-        controller.put(UUID.randomUUID(), new HabitVo())
+        controller.put(UUID.randomUUID(), new DailyJournalVo())
 
         then: "service is called for update"
-        1 * habitService.updateById(_, _)
+        1 * dailyJournalService.updateById(_, _)
     }
 
     def "DELETE endpoint call"() {
@@ -58,7 +58,7 @@ class HabitsControllerSpec extends Specification {
         controller.delete(UUID.randomUUID())
 
         then: "service is called for deletion"
-        1 * habitService.deleteById(_)
+        1 * dailyJournalService.deleteById(_)
     }
 
 }
