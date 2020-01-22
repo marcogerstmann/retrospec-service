@@ -5,7 +5,7 @@ import com.devtypes.retrospec.common.exception.RetrospecNotFoundException
 import spock.lang.Specification
 
 class DailyJournalsControllerSpec extends Specification {
-    IDailyJournalService dailyJournalService = Mock()
+    DailyJournalService dailyJournalService = Mock()
     DailyJournalsController controller
 
     def setup() {

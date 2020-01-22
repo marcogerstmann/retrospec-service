@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @ParametersAreNonnullByDefault
 @Component
-public abstract class AbstractConverter<T, V> implements IConverter<T, V> {
+public abstract class AbstractConverter<T, V> implements BaseConverter<T, V> {
 
     private Mapper mapper;
     private Class<T> tClazz;

@@ -2,7 +2,7 @@ package com.devtypes.retrospec.user;
 
 import com.devtypes.retrospec.common.enums.RetrospecEntity;
 import com.devtypes.retrospec.common.exception.RetrospecNotFoundException;
-import com.devtypes.retrospec.usersetting.IUserSettingService;
+import com.devtypes.retrospec.usersetting.UserSettingService;
 import com.devtypes.retrospec.usersetting.UserSettingVo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,10 +23,10 @@ import java.util.UUID;
 @RequestMapping("/api/v1/users")
 public class UsersController {
 
-    private final IUserService userService;
-    private final IUserSettingService userSettingService;
+    private final UserService userService;
+    private final UserSettingService userSettingService;
 
-    public UsersController(IUserService userService, IUserSettingService userSettingService) {
+    public UsersController(UserService userService, UserSettingService userSettingService) {
         this.userService = userService;
         this.userSettingService = userSettingService;
     }

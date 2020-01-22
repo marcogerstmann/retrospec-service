@@ -21,22 +21,22 @@ import java.util.UUID;
 @RequestMapping("/api/v1/daily-journals")
 public class DailyJournalsController {
 
-    private final IDailyJournalService habitService;
+    private final DailyJournalService dailyJournalService;
 
-    public DailyJournalsController(IDailyJournalService habitService) {
-        this.habitService = habitService;
+    public DailyJournalsController(DailyJournalService habitService) {
+        this.dailyJournalService = habitService;
     }
 
     @Nonnull
     @GetMapping
     protected ResponseEntity<List<DailyJournalVo>> index() {
-        return ResponseEntity.ok(habitService.findAll());
+        return ResponseEntity.ok(dailyJournalService.findAll());
     }
 
     @Nonnull
     @GetMapping("{id}")
     protected ResponseEntity<DailyJournalVo> get(@PathVariable UUID id) {
-        return habitService.findById(id)
+        return dailyJournalService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseThrow(() -> new RetrospecNotFoundException(RetrospecEntity.DAILY_JOURNAL, id));
     }
@@ -44,19 +44,19 @@ public class DailyJournalsController {
     @Nonnull
     @PostMapping
     protected ResponseEntity<DailyJournalVo> post(@RequestBody @Valid DailyJournalVo vo) {
-        return ResponseEntity.ok(habitService.create(vo));
+        return ResponseEntity.ok(dailyJournalService.create(vo));
     }
 
     @Nonnull
     @PutMapping("{id}")
     protected ResponseEntity<DailyJournalVo> put(@PathVariable UUID id, @RequestBody @Valid DailyJournalVo vo) {
-        return ResponseEntity.ok(habitService.updateById(id, vo));
+        return ResponseEntity.ok(dailyJournalService.updateById(id, vo));
     }
 
     @Nonnull
     @DeleteMapping("{id}")
     protected ResponseEntity<Void> delete(@PathVariable UUID id) {
-        habitService.deleteById(id);
+        dailyJournalService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

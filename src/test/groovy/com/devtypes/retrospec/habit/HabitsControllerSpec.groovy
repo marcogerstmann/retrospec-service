@@ -5,7 +5,7 @@ import com.devtypes.retrospec.common.exception.RetrospecNotFoundException
 import spock.lang.Specification
 
 class HabitsControllerSpec extends Specification {
-    IHabitService habitService = Mock()
+    HabitService habitService = Mock()
     HabitsController controller
 
     def setup() {

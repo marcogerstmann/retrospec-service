@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-public interface IConverter<T, V> {
+public interface BaseConverter<T, V> {
 
     @Nonnull
     V convertEntityToVo(T t);

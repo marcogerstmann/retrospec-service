@@ -21,9 +21,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/habits")
 public class HabitsController {
 
-    private final IHabitService habitService;
+    private final HabitService habitService;
 
-    public HabitsController(IHabitService habitService) {
+    public HabitsController(HabitService habitService) {
         this.habitService = habitService;
     }
 

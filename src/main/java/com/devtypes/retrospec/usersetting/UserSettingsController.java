@@ -20,9 +20,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/usersettings")
 public class UserSettingsController {
 
-    private final IUserSettingService userSettingService;
+    private final UserSettingService userSettingService;
 
-    public UserSettingsController(IUserSettingService userSettingService) {
+    public UserSettingsController(UserSettingService userSettingService) {
         this.userSettingService = userSettingService;
     }
 
