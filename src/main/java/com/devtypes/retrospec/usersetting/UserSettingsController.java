@@ -31,7 +31,7 @@ public class UserSettingsController {
     protected ResponseEntity<UserSettingVo> get(@PathVariable UUID id) {
         return userSettingService.findById(id)
                 .map(ResponseEntity::ok)
-                .orElseThrow(() -> new RetrospecNotFoundException(RetrospecEntity.USER, id));
+                .orElseThrow(() -> new RetrospecNotFoundException(RetrospecEntity.USER_SETTING, id));
     }
 
     @Nonnull
